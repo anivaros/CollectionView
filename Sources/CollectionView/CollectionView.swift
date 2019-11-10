@@ -20,7 +20,7 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Element: 
     let coordinator: Coordinator<Cell>
     
     
-    init(_ items: [Element], cell: @escaping ((Element) -> Cell), direction: UICollectionView.ScrollDirection = .vertical) {
+    public init(_ items: [Element], cell: @escaping ((Element) -> Cell), direction: UICollectionView.ScrollDirection = .vertical) {
         self.elements = items
         self.cell = cell
         self.coordinator = Coordinator(direction)
