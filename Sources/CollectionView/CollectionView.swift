@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public struct CollectionView<Element, Cell>: UIViewRepresentable where Element: Equatable, Cell: View {
+public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: View {
     
     public var elements: [Element]
     public var cell: ((Element) -> Cell)
