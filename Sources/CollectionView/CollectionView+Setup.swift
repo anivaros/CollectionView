@@ -15,6 +15,9 @@ public extension CollectionView {
 
         var width: CGFloat = 50
         var height: CGFloat = 50
+        
+        var lineSpacing: CGFloat = 10
+        var cellSpacing: CGFloat = 10
     }
     
     @discardableResult
@@ -26,6 +29,20 @@ public extension CollectionView {
         } else {
             props.width = width
             props.height = height
+        }
+        
+        return self
+    }
+    
+    @discardableResult
+    func spacing(line: CGFloat = 10, cell: CGFloat = 10, space: CGFloat? = nil) -> CollectionView {
+        
+        if let space = space {
+            props.lineSpacing = space
+            props.cellSpacing = space
+        } else {
+            props.lineSpacing = line
+            props.cellSpacing = cell
         }
         
         return self

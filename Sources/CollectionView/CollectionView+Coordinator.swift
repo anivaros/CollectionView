@@ -24,9 +24,9 @@ public extension CollectionView {
             let flow = UICollectionViewFlowLayout()
             flow.scrollDirection = direction
             flow.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            flow.itemSize = .init(width: 50, height: 50)
-            flow.minimumInteritemSpacing = 0
-            flow.minimumLineSpacing = 0
+            flow.itemSize = .init(width: _collectionView.props.width, height: _collectionView.props.height)
+            flow.minimumInteritemSpacing = _collectionView.props.cellSpacing
+            flow.minimumLineSpacing = _collectionView.props.lineSpacing
             
             return flow
         }
@@ -52,7 +52,6 @@ public extension CollectionView {
             vc.view.frame = CGRect(origin: .zero, size: CGSize(width: _collectionView.props.width, height: _collectionView.props.height))
             vc.view.backgroundColor = .clear
             cel.addSubview(vc.view)
-            cel.backgroundColor = .red
             
             return cel
         }
@@ -60,6 +59,14 @@ public extension CollectionView {
         public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             
             CGSize(width: _collectionView.props.width, height: _collectionView.props.height)
+        }
+        
+        public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+            _collectionView.props.lineSpacing
+        }
+        
+        public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+            _collectionView.props.cellSpacing
         }
     }
 }
