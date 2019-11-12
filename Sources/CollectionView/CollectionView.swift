@@ -33,7 +33,7 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
     
     public func makeUIView(context: UIViewRepresentableContext<CollectionView>) -> UICollectionView {
         
-        props.collectionView = UICollectionView(frame: .zero, collectionViewLayout: context.coordinator.layout)
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: context.coordinator.layout)
         
         
         context.coordinator.count = { self.elements.count }
@@ -41,9 +41,9 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
             return self.cell(self.elements[index.row])
         }
         
-        context.coordinator.setup(props.collectionView)
+        context.coordinator.setup(collectionView)
         
-        return props.collectionView
+        return collectionView
     }
     
     public func updateUIView(_ uiView: UICollectionView, context: UIViewRepresentableContext<CollectionView>) {

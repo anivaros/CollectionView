@@ -39,6 +39,15 @@ public extension CollectionView {
             super.init()
         }
         
+        public func setup(_ collectionView: UICollectionView) {
+            
+            collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+            collectionView.delegate = _collectionView.props.customDelegate ?? self
+            collectionView.dataSource = self
+            collectionView.backgroundColor = .clear
+        }
+        
+        
         // MARK: - Methods
         
         public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

@@ -11,17 +11,6 @@ import SwiftUI
 
 public extension CollectionView {
     
-    class Props {
-
-        var width: CGFloat = 50
-        var height: CGFloat = 50
-        
-        var lineSpacing: CGFloat = 10
-        var cellSpacing: CGFloat = 10
-        
-        var collectionView: UICollectionView!
-    }
-    
     @discardableResult
     func itemSize(width: CGFloat = 50, height: CGFloat = 50, side: CGFloat? = nil) -> CollectionView {
         
