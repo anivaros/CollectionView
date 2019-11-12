@@ -18,6 +18,8 @@ public extension CollectionView {
         
         var lineSpacing: CGFloat = 10
         var cellSpacing: CGFloat = 10
+        
+        var collectionView: UICollectionView!
     }
     
     @discardableResult
