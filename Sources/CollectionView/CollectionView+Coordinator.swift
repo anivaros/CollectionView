@@ -17,6 +17,14 @@ public extension CollectionView {
         
         // MARK: - Properties
         
+        var width: CGFloat = 50
+        var height: CGFloat = 50
+        
+        var lineSpacing: CGFloat = 10
+        var cellSpacing: CGFloat = 10
+        
+        weak var customDelegate: UICollectionViewDelegateFlowLayout?
+        
         var direction: UICollectionView.ScrollDirection
         var _collectionView: CollectionView!
         var cell: ((IndexPath) -> Cell)!
@@ -26,9 +34,9 @@ public extension CollectionView {
             let flow = UICollectionViewFlowLayout()
             flow.scrollDirection = direction
             flow.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-            flow.itemSize = .init(width: _collectionView.props.width, height: _collectionView.props.height)
-            flow.minimumInteritemSpacing = _collectionView.props.cellSpacing
-            flow.minimumLineSpacing = _collectionView.props.lineSpacing
+            flow.itemSize = .init(width: width, height: height)
+            flow.minimumInteritemSpacing = cellSpacing
+            flow.minimumLineSpacing = lineSpacing
             
             return flow
         }
@@ -41,13 +49,13 @@ public extension CollectionView {
             super.init()
         }
         
-        public func setup(_ collectionView: UICollectionView) {
-            
-            collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-            collectionView.delegate = _collectionView.props.customDelegate ?? self
-            collectionView.dataSource = self
-            collectionView.backgroundColor = .clear
-        }
+//        public func setup(_ collectionView: UICollectionView) {
+//
+//            collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+//            collectionView.delegate = _collectionView.props.customDelegate ?? self
+//            collectionView.dataSource = self
+//            collectionView.backgroundColor = .clear
+//        }
         
         
         // MARK: - Methods
@@ -60,7 +68,7 @@ public extension CollectionView {
             
             let cel = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
             let vc = UIHostingController(rootView: cell(indexPath))
-            vc.view.frame = CGRect(origin: .zero, size: CGSize(width: _collectionView.props.width, height: _collectionView.props.height))
+            vc.view.frame = CGRect(origin: .zero, size: CGSize(width: width, height: height))
             vc.view.backgroundColor = .clear
             cel.addSubview(vc.view)
             
@@ -69,15 +77,15 @@ public extension CollectionView {
         
         public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
             
-            CGSize(width: _collectionView.props.width, height: _collectionView.props.height)
+            CGSize(width: width, height: height)
         }
         
         public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-            _collectionView.props.lineSpacing
+            lineSpacing
         }
         
         public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-            _collectionView.props.cellSpacing
+            cellSpacing
         }
     }
 }

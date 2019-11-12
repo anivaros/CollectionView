@@ -15,8 +15,6 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
     
     // MARK: - Size
     
-    public var props = Props()
-    
     let coordinator: Coordinator<Cell>
     
     
@@ -35,8 +33,9 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: context.coordinator.layout)
         
-        
-        context.coordinator.count = { self.elements.count }
+        context.coordinator.count = {
+            self.elements.count
+        }
         context.coordinator.cell = { index in
             return self.cell(self.elements[index.row])
         }

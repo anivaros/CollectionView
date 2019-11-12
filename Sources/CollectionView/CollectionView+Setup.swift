@@ -15,11 +15,11 @@ public extension CollectionView {
     func itemSize(width: CGFloat = 50, height: CGFloat = 50, side: CGFloat? = nil) -> CollectionView {
         
         if let side = side {
-            props.width = side
-            props.height = side
+            coordinator.width = side
+            coordinator.height = side
         } else {
-            props.width = width
-            props.height = height
+            coordinator.width = width
+            coordinator.height = height
         }
         
         return self
@@ -29,11 +29,11 @@ public extension CollectionView {
     func spacing(line: CGFloat = 10, cell: CGFloat = 10, space: CGFloat? = nil) -> CollectionView {
         
         if let space = space {
-            props.lineSpacing = space
-            props.cellSpacing = space
+            coordinator.lineSpacing = space
+            coordinator.cellSpacing = space
         } else {
-            props.lineSpacing = line
-            props.cellSpacing = cell
+            coordinator.lineSpacing = line
+            coordinator.cellSpacing = cell
         }
         
         return self
