@@ -20,7 +20,7 @@ public extension CollectionViewCoordinator {
     
     func setup(_ collectionView: UICollectionView) {
         
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cell")
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = .clear

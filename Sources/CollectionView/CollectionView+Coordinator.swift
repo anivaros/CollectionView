@@ -9,6 +9,8 @@
 import UIKit
 import SwiftUI
 
+public class CollectionViewCell: UICollectionViewCell { }
+
 public extension CollectionView {
     
     class Coordinator<Cell>: NSObject, CollectionViewCoordinator where Cell: View {
@@ -41,7 +43,7 @@ public extension CollectionView {
         
         public func setup(_ collectionView: UICollectionView) {
             
-            collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+            collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cell")
             collectionView.delegate = _collectionView.props.customDelegate ?? self
             collectionView.dataSource = self
             collectionView.backgroundColor = .clear
