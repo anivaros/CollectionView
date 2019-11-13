@@ -9,7 +9,14 @@
 import UIKit
 import SwiftUI
 
-public class CollectionViewCell: UICollectionViewCell { }
+public class CollectionViewCell<Cell>: UICollectionViewCell where Cell: View {
+    
+    public func addHostView(_ vc: UIHostingController<Cell>) {
+        
+        subviews.forEach { $0.removeFromSuperview() }
+        addSubview(vc.view)
+    }
+}
 
 public extension CollectionView {
     
@@ -49,13 +56,13 @@ public extension CollectionView {
             super.init()
         }
         
-//        public func setup(_ collectionView: UICollectionView) {
-//
-//            collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-//            collectionView.delegate = _collectionView.props.customDelegate ?? self
-//            collectionView.dataSource = self
-//            collectionView.backgroundColor = .clear
-//        }
+        public func setup(_ collectionView: UICollectionView) {
+            
+            collectionView.register(CollectionViewCell<Cell>.self, forCellWithReuseIdentifier: "cell")
+            collectionView.delegate = self
+            collectionView.dataSource = self
+            collectionView.backgroundColor = .clear
+        }
         
         
         // MARK: - Methods
@@ -66,11 +73,12 @@ public extension CollectionView {
         
         public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             
-            let cel = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+            let cel = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell<Cell>
             let vc = UIHostingController(rootView: cell(indexPath))
             vc.view.frame = CGRect(origin: .zero, size: CGSize(width: width, height: height))
             vc.view.backgroundColor = .clear
-            cel.addSubview(vc.view)
+            
+            cel.addHostView(vc)
             
             return cel
         }

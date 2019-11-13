@@ -14,15 +14,3 @@ public protocol CollectionViewCoordinator: class, UICollectionViewDataSource & U
     
     func setup(_ collectionView: UICollectionView)
 }
-
-
-public extension CollectionViewCoordinator {
-    
-    func setup(_ collectionView: UICollectionView) {
-        
-        collectionView.register(CollectionViewCell.self, forCellWithReuseIdentifier: "cell")
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        collectionView.backgroundColor = .clear
-    }
-}
