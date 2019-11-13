@@ -2,7 +2,7 @@
 
 A description of this package.
 
-Let me introduce `CollectionView`!!!
+# CollectionView: UICollectionView in SwiftUI
 
 ## Installation
 ### Swift Packages
@@ -28,3 +28,5 @@ CollectionView(["1", "2", "3", "4", "5"], cell: { item in
     .spacing(space: 16)
     .padding(.horizontal, 16)
 ```
+
+![CollectionView: UICollectionView in SwiftUI](https://raw.githubusercontent.com/damienissa/CollectionView/master/collectionView.png)
