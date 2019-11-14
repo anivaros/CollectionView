@@ -1,7 +1,3 @@
-# CollectionView
-
-A description of this package.
-
 # CollectionView: UICollectionView in SwiftUI
 
 ## Installation
