@@ -9,16 +9,11 @@
 import UIKit
 import SwiftUI
 
-public class CollectionViewCell<Cell>: UICollectionViewCell where Cell: View {
-    
-    public func addHostView(_ vc: UIHostingController<Cell>) {
-        
-        subviews.forEach { $0.removeFromSuperview() }
-        addSubview(vc.view)
-    }
-}
-
 public extension CollectionView {
+    
+    class CollectionViewCell<Cell>: UICollectionViewCell where Cell: View {
+        
+    }
     
     class Coordinator<Cell>: NSObject, CollectionViewCoordinator where Cell: View {
         
@@ -73,12 +68,9 @@ public extension CollectionView {
         
         public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             
-            let cel = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! CollectionViewCell<Cell>
-            let vc = UIHostingController(rootView: cell(indexPath))
-            vc.view.frame = CGRect(origin: .zero, size: CGSize(width: width, height: height))
-            vc.view.backgroundColor = .clear
+            let cel = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
             
-            cel.addHostView(vc)
+            cel.addSubview(cell(indexPath))
             
             return cel
         }
