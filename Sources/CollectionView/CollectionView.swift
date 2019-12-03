@@ -13,11 +13,7 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
     // MARK: - Properties
     
     /// Elements for showing on *CollectionView*
-    public var elements: [Element] {
-        didSet {
-            coordinator.setCount(elements.count)
-        }
-    }
+    public var elements: [Element]
     
     /// Cell content for *CollectionView*
     public var cell: ((Element) -> Cell)
@@ -39,6 +35,7 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
         self.elements = items
         self.cell = cell
         self.coordinator = Coordinator(direction)
+        self.coordinator.setCount(elements.count)
         self.coordinator._collectionView = self
     }
 
@@ -63,9 +60,5 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
     public func updateUIView(_ uiView: UICollectionView, context: UIViewRepresentableContext<CollectionView>) {
         
         uiView.reloadData()
-    }
-    
-    private func getCount() -> Int {
-        elements.count
     }
 }
