@@ -15,11 +15,10 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
     /// Elements for showing on *CollectionView*
     public var elements: [Element]
     
+    public var direction: UICollectionView.ScrollDirection
+    
     /// Cell content for *CollectionView*
     public var cell: ((Element) -> Cell)
-    
-    /// *Coordinator* property
-    internal let coordinator: Coordinator<Cell>
     
     
     // MARK: - Lifecycle
@@ -34,12 +33,12 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
         
         self.elements = items
         self.cell = cell
-        self.coordinator = Coordinator(direction, count: items.count)
+        self.direction = direction
     }
 
     public func makeCoordinator() -> Coordinator<Cell> {
         
-        coordinator
+        Coordinator(direction, count: elements.count)
     }
     
     public func makeUIView(context: UIViewRepresentableContext<CollectionView>) -> UICollectionView {

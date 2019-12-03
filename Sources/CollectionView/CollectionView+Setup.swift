@@ -14,27 +14,28 @@ public extension CollectionView {
     @discardableResult
     func itemSize(width: CGFloat = 50, height: CGFloat = 50, side: CGFloat? = nil) -> CollectionView {
         
-        if let side = side {
-            coordinator.width = side
-            coordinator.height = side
-        } else {
-            coordinator.width = width
-            coordinator.height = height
-        }
+//        if let side = side {
+//
+//            coordinator.width = side
+//            coordinator.height = side
+//        } else {
+//            coordinator.width = width
+//            coordinator.height = height
+//        }
         
         return self
     }
     
     @discardableResult
     func spacing(line: CGFloat = 10, cell: CGFloat = 10, space: CGFloat? = nil) -> CollectionView {
-        
-        if let space = space {
-            coordinator.lineSpacing = space
-            coordinator.cellSpacing = space
-        } else {
-            coordinator.lineSpacing = line
-            coordinator.cellSpacing = cell
-        }
+//
+//        if let space = space {
+//            coordinator.lineSpacing = space
+//            coordinator.cellSpacing = space
+//        } else {
+//            coordinator.lineSpacing = line
+//            coordinator.cellSpacing = cell
+//        }
         
         return self
     }

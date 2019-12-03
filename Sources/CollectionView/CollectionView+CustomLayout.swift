@@ -12,7 +12,7 @@ public extension CollectionView {
     @discardableResult
     func layoutDelegate(_ custom: UICollectionViewDelegateFlowLayout) -> CollectionView {
         
-        coordinator.customDelegate = custom
+//        coordinator.customDelegate = custom
         
         return self
     }
