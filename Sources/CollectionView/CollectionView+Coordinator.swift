@@ -28,7 +28,6 @@ public extension CollectionView {
         weak var customDelegate: UICollectionViewDelegateFlowLayout?
         
         var direction: UICollectionView.ScrollDirection
-        var _collectionView: CollectionView!
         var cell: ((IndexPath) -> Cell)!
         
         let count: Int

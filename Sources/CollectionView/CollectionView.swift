@@ -35,7 +35,6 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
         self.elements = items
         self.cell = cell
         self.coordinator = Coordinator(direction, count: items.count)
-        self.coordinator._collectionView = self
     }
 
     public func makeCoordinator() -> Coordinator<Cell> {
