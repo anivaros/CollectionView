@@ -34,8 +34,7 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
         
         self.elements = items
         self.cell = cell
-        self.coordinator = Coordinator(direction)
-        self.coordinator.setCount(elements.count)
+        self.coordinator = Coordinator(direction, count: items.count)
         self.coordinator._collectionView = self
     }
 

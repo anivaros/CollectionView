@@ -30,7 +30,8 @@ public extension CollectionView {
         var direction: UICollectionView.ScrollDirection
         var _collectionView: CollectionView!
         var cell: ((IndexPath) -> Cell)!
-        var count = 0
+        
+        let count: Int
         
         public var layout: UICollectionViewLayout {
             
@@ -47,8 +48,9 @@ public extension CollectionView {
         
         // MARK: - Lifecycle
         
-        required init(_ direction: UICollectionView.ScrollDirection) {
+        required init(_ direction: UICollectionView.ScrollDirection, count: Int) {
             self.direction = direction
+            self.count = count
             super.init()
         }
         
@@ -62,10 +64,6 @@ public extension CollectionView {
         
         
         // MARK: - Methods
-        
-        internal func setCount(_ count: Int) {
-            self.count = count
-        }
         
         public func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             count
