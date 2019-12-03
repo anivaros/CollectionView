@@ -48,7 +48,7 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: context.coordinator.layout)
         
         context.coordinator.count = {
-            self.elements.count
+            self.getCount()
         }
         context.coordinator.cell = { index in
             return self.cell(self.elements[index.row])
@@ -62,5 +62,9 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
     public func updateUIView(_ uiView: UICollectionView, context: UIViewRepresentableContext<CollectionView>) {
         
         uiView.reloadData()
+    }
+    
+    private func getCount() -> Int {
+        elements.count
     }
 }
