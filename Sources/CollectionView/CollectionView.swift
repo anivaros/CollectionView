@@ -13,7 +13,11 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
     // MARK: - Properties
     
     /// Elements for showing on *CollectionView*
-    public var elements: [Element]
+    public var elements: [Element] {
+        didSet {
+            coordinator.setCount(elements.count)
+        }
+    }
     
     /// Cell content for *CollectionView*
     public var cell: ((Element) -> Cell)
@@ -47,9 +51,6 @@ public struct CollectionView<Element, Cell>: UIViewRepresentable where Cell: Vie
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: context.coordinator.layout)
         
-        context.coordinator.count = {
-            self.getCount()
-        }
         context.coordinator.cell = { index in
             return self.cell(self.elements[index.row])
         }
